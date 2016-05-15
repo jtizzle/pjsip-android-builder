@@ -38,8 +38,8 @@ if [ ${IS_RELEASE_BUILD} = 1 ]; then
     echo "disabling pjsip assertions..."
     echo "#include <android/log.h>" >> $CONFIG_SITE_PATH
     echo "#define pj_assert(expr) if (!(expr)) { __android_log_print(ANDROID_LOG_ERROR, __FILE__, \"Assertion raised at line %d in file\n\", __LINE__);}" >> $CONFIG_SITE_PATH
-    #define NDEBUG 1
-    #define DEBUG 0
+    echo "#define NDEBUG 1" >> $CONFIG_SITE_PATH
+    echo "#define DEBUG 0" >> $CONFIG_SITE_PATH
 fi
 
 for arch in "${TARGET_ARCHS[@]}"
