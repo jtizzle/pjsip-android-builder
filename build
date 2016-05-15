@@ -32,16 +32,14 @@ cat <<EOF > "$CONFIG_SITE_PATH"
 #define PJMEDIA_AUDIO_DEV_HAS_ANDROID_JNI 1
 #define PJMEDIA_AUDIO_DEV_HAS_OPENSL 0
 #define PJSIP_AUTH_AUTO_SEND_NEXT 0
-#include <android/log.h>
-#define pj_assert(expr) if (!(expr)) { __android_log_print(ANDROID_LOG_ERROR, __FILE__, "Assertion raised at line %d in file\n", __LINE__);}
-#define NDEBUG 1
-#define DEBUG 0
 EOF
 
 if [ ${IS_RELEASE_BUILD} = 1 ]; then
     echo "disabling pjsip assertions..."
     echo "#include <android/log.h>" >> $CONFIG_SITE_PATH
     echo "#define pj_assert(expr) if (!(expr)) { __android_log_print(ANDROID_LOG_ERROR, __FILE__, \"Assertion raised at line %d in file\n\", __LINE__);}" >> $CONFIG_SITE_PATH
+    #define NDEBUG 1
+    #define DEBUG 0
 fi
 
 for arch in "${TARGET_ARCHS[@]}"
