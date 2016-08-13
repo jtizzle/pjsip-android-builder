@@ -60,6 +60,7 @@ do
     APP_PLATFORM=android-${TARGET_ANDROID_API} TARGET_ABI=$arch ./configure-android --use-ndk-cflags \
                                          --disable-asm \
 					 --enable-pic \
+					 --disable-libyuv \
 					 --disable-yasm \
                                          >>"${FINAL_BUILD_LOGS}/${arch}.log" 2>&1
     make dep >>"${FINAL_BUILD_LOGS}/${arch}.log" 2>&1
